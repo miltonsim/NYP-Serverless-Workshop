@@ -12,7 +12,7 @@ dynamodb = boto3.resource(
 # Select the Product table
 table = dynamodb.Table('Product')
 
-# Update item's cost to 50 from Product table with product id  
+# Scan table (retrieve all records)   
 response = table.scan()
 
 # Print response where Status Code 200 denotes sucess 
