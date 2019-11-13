@@ -10,8 +10,9 @@ def lambda_handler(event, context):
     # Generate a random unique product ID  
     product_id = uuid.uuid4().hex
 
-    # Retrieve product name from event 
+    # Retrieve product name and cost from event 
     product_name = json.loads(event['body'])['Name']
+    product_cost = json.loads(event['body'])['Cost']
     
     # Create product info 
     product_info = { 
