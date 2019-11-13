@@ -17,7 +17,8 @@ def lambda_handler(event, context):
     # Create product info 
     product_info = { 
         "Id": product_id,
-        "Name": product_name
+        "Name": product_name, 
+        "Cost": product_cost
     }
 
     # Put items into Product table 
