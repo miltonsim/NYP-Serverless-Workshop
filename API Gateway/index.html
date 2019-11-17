@@ -16,6 +16,28 @@
 			theadClasses: 'thead-dark'
 		});
 	});
+	
+	function createProduct() {
+		var name = document.getElementById('name').value;
+		var cost = document.getElementById('cost').value;
+		
+		var url = 'https://d9xh3unjdl.execute-api.ap-southeast-1.amazonaws.com/v3/product';
+		var data = { "body": "{\"Name\": \"TEST\", \"Cost\": 300}" };
+		
+
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: JSON.stringify(data),
+			contentType:"application/json",
+			success: function(response) {
+			console.log(response);
+		},
+			error: function(xhr) {
+			console.log('Error!  Status = ' + xhr.status + " Message = " + xhr.statusText);
+			}
+		});
+	}
 	</script>
 </head>
 <body>
@@ -23,6 +45,22 @@
 		<h1>NYP Serverless Workshop</h1> 
     
 		</br>
+		
+		<div class="row">
+			<div class="col-md-8">
+				<form>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" placeholder="Enter name">
+					</div>
+					<div class="form-group">
+						<label for="cost">Cost</label>
+						<input type="number" class="form-control" id="cost" placeholder="Enter cost">
+					</div>
+					<button type="button" class="btn btn-primary" onclick="createProduct()">Submit</button>
+				</form>
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="col-md-8">
