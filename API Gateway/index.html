@@ -32,6 +32,8 @@
 			contentType:"application/json",
 			success: function(response) {
 			console.log(response);
+        
+			location.reload();
 		},
 			error: function(xhr) {
 			console.log('Error!  Status = ' + xhr.status + " Message = " + xhr.statusText);
