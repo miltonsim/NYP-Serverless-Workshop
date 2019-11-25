@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 	<script>
-	$.get("https://d9xh3unjdl.execute-api.ap-southeast-1.amazonaws.com/v2/product", function(data) {
+	$.get("https://ged2ghft5l.execute-api.ap-southeast-1.amazonaws.com/v3/product", function(data) {
 		mydata = data['body']
 		console.log(mydata)
 		$('#table').bootstrapTable({
@@ -16,6 +16,28 @@
 			theadClasses: 'thead-dark'
 		});
 	});
+	
+	function createProduct() {
+		var name = document.getElementById('name').value;
+		var cost = document.getElementById('cost').value;
+		
+		var url = "https://ged2ghft5l.execute-api.ap-southeast-1.amazonaws.com/v3/product";
+        var data = {"body": `{"Name": "${name}", "Cost": ${cost}}`};
+		
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: JSON.stringify(data),
+			contentType:"application/json",
+			success: function(response) {
+			console.log(response);
+			location.reload();
+		},
+			error: function(xhr) {
+			console.log('Error!  Status = ' + xhr.status + " Message = " + xhr.statusText);
+			}
+		});
+	}
 	</script>
 </head>
 <body>
@@ -23,6 +45,22 @@
 		<h1>NYP Serverless Workshop</h1> 
     
 		</br>
+		
+		<div class="row">
+			<div class="col-md-8">
+				<form>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" placeholder="Enter name">
+					</div>
+					<div class="form-group">
+						<label for="cost">Cost</label>
+						<input type="number" class="form-control" id="cost" placeholder="Enter cost">
+					</div>
+					<button type="button" class="btn btn-primary" onclick="createProduct()">Submit</button>
+				</form>
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="col-md-8">
