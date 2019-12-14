@@ -6,6 +6,7 @@ dynamodb = boto3.resource(
     'dynamodb',
     aws_access_key_id="YOUR-ACCESS-KEY",
     aws_secret_access_key="YOUR-SECRET-ACCESS-KEY",
+    aws_session_token="YOUR-SESSION-TOKEN",
     region_name='us-east-1'
 )
 
